@@ -2,9 +2,10 @@ package generics;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleArray<T> implements Iterable<T> {
-    transient T[] data;
+    private T[] data;
     private int size = 0;
 
     public SimpleArray(int size) {
@@ -18,26 +19,20 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public boolean set(int index, T model) {
-        if (index > data.length) {
-            throw new NullPointerException("array size does not match");
-        }
+        Objects.checkIndex(index, size);
         data[index] = model;
         return true;
     }
 
     public boolean remove(int index) {
-        if (index > data.length) {
-            throw new NullPointerException("array size does not match");
-        }
-        System.arraycopy(data, index, data, index-1, size-index);
+        Objects.checkIndex(index, size);
+        System.arraycopy(data, index, data, index-1, size-index-1);
         size--;
         return true;
     }
 
     public Object get(int index) {
-        if (index > data.length) {
-            throw new NullPointerException("array size does not match");
-        }
+        Objects.checkIndex(index, size);
         return data[index];
     }
 

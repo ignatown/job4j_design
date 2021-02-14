@@ -13,7 +13,7 @@ public class SimpleArrayTest {
 
     @Test
     public void whenAddThenGet() {
-        SimpleArray<String> array = new SimpleArray<>();
+          SimpleArray<String> array = new SimpleArray<>();
         array.add("first");
         String rsl = array.get(0);
         assertThat(rsl, is("first"));

@@ -9,26 +9,34 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public void add(T model) {
-    mem.add(model);
+         mem.add(model);
     }
 
     @Override
     public boolean replace(String id, T model) {
-        Objects.checkIndex(Integer.parseInt(id),mem.size());
-        mem.set(Integer.parseInt(id),model);
-        return true;
+        for (int i = 0; i < mem.size(); i++) {
+            if (mem.get(i).equals(findById(id))) {
+                mem.set(i, model);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean delete(String id) {
-        Objects.checkIndex(Integer.parseInt(id),mem.size());
-        mem.remove(Integer.parseInt(id));
+        mem.remove(findById(id));
         return true;
     }
 
     @Override
     public T findById(String id) {
-        Objects.checkIndex(Integer.parseInt(id),mem.size());
-        return mem.get(Integer.parseInt(id));
+        for (T elm:
+             mem) {
+            if (elm.getId().equals(id)) {
+                return elm;
+            }
+        }
+        throw new NullPointerException("id does not exist");
     }
 }

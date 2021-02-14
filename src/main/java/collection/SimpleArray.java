@@ -29,6 +29,7 @@ public class SimpleArray<T> implements Iterable<T> {
             resize(container.length + 10);
         }
         container[size++] = model;
+        modCount++;
     }
 
     private void resize(int newLength) {

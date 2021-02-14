@@ -19,7 +19,7 @@ public class UserStore implements Store<User> {
 
     @Override
     public boolean delete(String id) {
-        store.delete(id);
+         store.delete(id);
         return true;
     }
 

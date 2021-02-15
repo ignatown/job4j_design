@@ -25,7 +25,7 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
-        mem.remove(findById(id));
+        mem.remove(findIndexById(id));
         return true;
     }
 
@@ -35,6 +35,16 @@ public final class MemStore<T extends Base> implements Store<T> {
              mem) {
             if (elm.getId().equals(id)) {
                 return elm;
+            }
+        }
+        throw new NullPointerException("id does not exist");
+    }
+
+    @Override
+    public int findIndexById(String id) {
+        for (int i = 0; i < mem.size(); i++) {
+            if (mem.get(i).getId().equals(id)) {
+                return i;
             }
         }
         throw new NullPointerException("id does not exist");

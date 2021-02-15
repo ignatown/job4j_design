@@ -9,4 +9,6 @@ public interface Store<T extends generics.Base> {
     boolean delete(String id);
 
     T findById(String id);
+
+    int findIndexById(String id);
 }

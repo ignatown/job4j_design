@@ -11,15 +11,8 @@ public class LinkList<E> implements Iterable<E> {
     private int size;
     private int modCount;
 
-    public LinkList() {
-        this.first = null;
-        this.last = null;
-        this.size = 0;
-        modCount = 0;
-    }
-
     public void add(E value) {
-        Node<E> elm = new Node<>(value, size++);
+        Node<E> elm = new Node<>(value);
         if(first == null) {
             first = elm;
         } else {
@@ -86,7 +79,7 @@ public class LinkList<E> implements Iterable<E> {
         private Node<E> next;
         private int index;
 
-        public Node(E value, int index) {
+        public Node(E value) {
             this.value = value;
             this.index = index;
         }

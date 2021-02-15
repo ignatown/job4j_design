@@ -9,7 +9,7 @@ public class SimpleArray<T> implements Iterable<T> {
     private int size = 0;
     private int capacity = 10;
     private int modCount;
-    transient Object[] container = new Object[capacity];
+    private Object[] container = new Object[capacity];
 
     public int getSize() {
         return size;
@@ -26,7 +26,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public void add(T model) {
         if (size == container.length) {
-            resize(container.length + 10);
+            resize(container.length * 2);
         }
         container[size++] = model;
         modCount++;

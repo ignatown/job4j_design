@@ -14,6 +14,10 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
+        int index = findIndexById(id);
+        if (index == -1) {
+            return false;
+        }
         for (int i = 0; i < mem.size(); i++) {
             if (mem.get(i).equals(findById(id))) {
                 mem.set(i, model);
@@ -25,12 +29,20 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
+        int index = findIndexById(id);
+        if (index == -1) {
+            return false;
+        }
         mem.remove(findIndexById(id));
         return true;
     }
 
     @Override
     public T findById(String id) {
+        int index = findIndexById(id);
+        if (index == -1) {
+            return null;
+        }
         for (T elm:
              mem) {
             if (elm.getId().equals(id)) {
@@ -45,6 +57,8 @@ public final class MemStore<T extends Base> implements Store<T> {
         for (int i = 0; i < mem.size(); i++) {
             if (mem.get(i).getId().equals(id)) {
                 return i;
+            } else {
+                return -1;
             }
         }
         throw new NullPointerException("id does not exist");

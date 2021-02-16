@@ -15,10 +15,6 @@ public class SimpleArray<T> implements Iterable<T> {
         return size;
     }
 
-    public int getModCount() {
-        return modCount;
-    }
-
     public T get(int index) {
         Objects.checkIndex(index, size);
         return (T) container[index];
@@ -47,7 +43,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
             public SimpleArrayIterator(SimpleArray<T> array) {
                 this.mem = array;
-                this.expectedModCount = array.getModCount();
+                this.expectedModCount = array.modCount;
             }
 
             @Override
@@ -67,7 +63,7 @@ public class SimpleArray<T> implements Iterable<T> {
             }
 
             private boolean isModified() {
-                return mem.getModCount() != expectedModCount;
+                return mem.modCount != expectedModCount;
             }
         }
         return new SimpleArrayIterator<>(this);

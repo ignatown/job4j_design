@@ -33,7 +33,7 @@ public final class MemStore<T extends Base> implements Store<T> {
         if (index == -1) {
             return false;
         }
-        mem.remove(findIndexById(id));
+        mem.remove(index);
         return true;
     }
 
@@ -57,10 +57,8 @@ public final class MemStore<T extends Base> implements Store<T> {
         for (int i = 0; i < mem.size(); i++) {
             if (mem.get(i).getId().equals(id)) {
                 return i;
-            } else {
-                return -1;
             }
         }
-        throw new NullPointerException("id does not exist");
+        return -1;
     }
 }

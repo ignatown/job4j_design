@@ -41,10 +41,10 @@ public class ListUtilsTest {
 
     @Test
     public void whenRemoveIfMoreThanThree() {
-        List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 4, 3, 2, 1));
-        Predicate<Integer> flt = a -> a < 3;
+        List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        Predicate<Integer> flt = a -> a > 3;
         List<Integer> rsl = ListUtils.removeIf(input, flt);
-        assertThat(Arrays.asList(1, 2, 2, 1), Is.is(rsl));
+        assertThat(Arrays.asList(1, 2, 3), Is.is(rsl));
     }
 
     @Test

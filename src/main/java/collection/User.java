@@ -24,6 +24,7 @@ public class User {
                 '}';
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,6 +32,7 @@ public class User {
         User user = (User) o;
         return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
     }
+
 
     @Override
     public int hashCode() {
@@ -41,7 +43,7 @@ public class User {
         User user1 = new User("Robert", 2);
         User user2 = new User("Robert", 2);
 
-        Map<User, Object> map = new Map<>();
+        Map<User, Object> map = new HashMap<>();
         map.put(user1, 1);
         map.put(user2, 2);
 

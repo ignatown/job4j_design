@@ -32,11 +32,16 @@ public class User {
         return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
     public static void main(String[] args) {
         User user1 = new User("Robert", 2);
         User user2 = new User("Robert", 2);
 
-        Map<User, Object> map = new HashMap<>();
+        Map<User, Object> map = new Map<>();
         map.put(user1, 1);
         map.put(user2, 2);
 

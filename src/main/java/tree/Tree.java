@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 class Tree<E> implements SimpleTree<E> {
     private final Node<E> root;
@@ -9,17 +10,24 @@ class Tree<E> implements SimpleTree<E> {
         this.root = new Node<>(root);
     }
 
-    public boolean isBinary() {
-        Queue<Node<E>> data = new LinkedList<>();
+    private Node<E> findByPredicate(Predicate<Node<E>> condition) {
+        Queue<SimpleTree.Node<E>> data = new LinkedList<>();
         data.offer(this.root);
         while (!data.isEmpty()) {
-            Node<E> el = data.poll();
-            if (el.children.size() > 2) {
-               return false;
+            SimpleTree.Node<E> el = data.poll();
+            if (condition.test(el)) {
+                return el;
             }
             data.addAll(el.children);
         }
-        return true;
+        return null;
+    }
+
+    public boolean isBinary() {
+       if (findByPredicate(n -> n.children.size() > 2) == null) {
+           return true;
+       }
+       return false;
     }
 
     @Override

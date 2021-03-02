@@ -9,6 +9,14 @@ public class SimpleMap<K, V> implements Iterable<K> {
     private int content;
     private int size;
     private int mdCnt = 0;
+    private float mng = 0.75f;
+
+    public SimpleMap() {
+        size = 0;
+        content = 8;
+        tbl = (Node<K, V>[]) new Node[content];
+
+    }
 
     public boolean insert(K key, V value) {
         Node<K, V> elm = new Node<>(hash(key), key, value);
@@ -17,9 +25,9 @@ public class SimpleMap<K, V> implements Iterable<K> {
             return false;
         }
         tbl[i] = elm;
-        if (size++ >= content * 0.75f) {
+        if (size++ >= content * mng) {
             Node<K, V>[] oldTab = tbl;
-            content *= 1.5;
+            content *= 2;
             tbl = (Node<K, V>[]) new Node[content];
             for (Node<K, V> elmnt : oldTab) {
                 if (elm != null) {
@@ -33,7 +41,7 @@ public class SimpleMap<K, V> implements Iterable<K> {
 
     public V get(K key) {
         if (!hasKey(key)) {
-            throw new NoSuchElementException();
+            return null;
         }
         return tbl[index(key)].value;
     }
@@ -44,6 +52,7 @@ public class SimpleMap<K, V> implements Iterable<K> {
         } else {
         tbl[index(key)] = null;
         mdCnt++;
+        size--;
         return true;
         }
     }

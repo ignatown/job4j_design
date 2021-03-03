@@ -25,7 +25,8 @@ public class SimpleMap<K, V> implements Iterable<K> {
             return false;
         }
         tbl[i] = elm;
-        if (size++ >= content * mng) {
+        size++;
+        if (size >= content * mng) {
             Node<K, V>[] oldTab = tbl;
             content *= 2;
             tbl = (Node<K, V>[]) new Node[content];
@@ -49,12 +50,11 @@ public class SimpleMap<K, V> implements Iterable<K> {
     public boolean delete(K key) {
         if (!hasKey(key)) {
             return false;
-        } else {
+        }
         tbl[index(key)] = null;
         mdCnt++;
         size--;
         return true;
-        }
     }
 
     private boolean hasKey(K key) {
@@ -70,11 +70,10 @@ public class SimpleMap<K, V> implements Iterable<K> {
     }
 
     private int hash(K key) {
-        if (key == null) {
+        if (key.equals(null)) {
             return 0;
-        } else {
-            return key.hashCode();
         }
+            return key.hashCode();
     }
 
     @Override

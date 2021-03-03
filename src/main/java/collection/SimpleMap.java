@@ -25,7 +25,6 @@ public class SimpleMap<K, V> implements Iterable<K> {
             return false;
         }
         tbl[i] = elm;
-        size++;
         if (size >= content * mng) {
             Node<K, V>[] oldTab = tbl;
             content *= 2;

@@ -36,6 +36,9 @@ class Tree<E> implements SimpleTree<E> {
         if (prntNode == null) {
             return false;
         }
+        if (findBy(child).isPresent()) {
+            return false;
+        }
         return prntNode.children.add(new Node<>(child));
     }
 

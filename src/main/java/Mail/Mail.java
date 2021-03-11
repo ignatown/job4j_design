@@ -20,17 +20,17 @@ public class Mail {
         return null;
     }
 
-    public void mailsTreatment(){
+    public Map<String, Set<String>> merge(Map<String, Set<String>> data){
         for (String user:
-             base.keySet()) {
+             data.keySet()) {
             for (String userEmail:
-            base.get(user)) {
+            data.get(user)) {
                 if (emails.contains(userEmail)) {
                     tempUser = findByEmail(userEmail);
                     if (dubUsers.containsKey(tempUser)) {
-                        dubUsers.get(tempUser).addAll(base.get(user));
+                        dubUsers.get(tempUser).addAll(data.get(user));
                     } else {
-                   dubUsers.put(tempUser, base.get(user));
+                   dubUsers.put(tempUser, data.get(user));
                    emptyUsers.add(user);
                     }
                 } else {
@@ -40,33 +40,13 @@ public class Mail {
         }
         for (String user:
              emptyUsers) {
-            base.remove(user);
+            data.remove(user);
         }
         for (String user:
              dubUsers.keySet()) {
-            base.put(user, dubUsers.get(user));
+            data.put(user, dubUsers.get(user));
         }
-
-
+        return data;
     }
-
-    public static void main(String[] args) {
-        Mail mail = new Mail();
-        mail.base.put("user1", Set.of("em1","em2","em3"));
-        mail.base.put("user2", Set.of("em4","em5","em6"));
-        mail.base.put("user3", Set.of("em7"));
-        mail.base.put("user4", Set.of("em7","em8"));
-/*        mail.base.put("user5", Set.of("em7","em9"));*/
-        System.out.println(mail.base);
-        System.out.println(mail.emails);
-        System.out.println(mail.emptyUsers);
-        System.out.println(mail.dubUsers);
-        mail.mailsTreatment();
-        System.out.println(mail.base);
-        System.out.println(mail.emails);
-        System.out.println(mail.emptyUsers);
-        System.out.println(mail.dubUsers);
-    }
-
 }
 

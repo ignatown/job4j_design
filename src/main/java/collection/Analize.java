@@ -15,9 +15,6 @@ public class Analize {
         for (User user :
                 current) {
             currentUsers.put(user.id, user.name);
-        }
-        for (User user :
-                current) {
             if (!previous.contains(user)) {
                 if (previousUsers.get(user.id) == null) {
                     info.added++;
@@ -44,19 +41,6 @@ public class Analize {
         public User(int id, String name) {
             this.id = id;
             this.name = name;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            User user = (User) o;
-            return id == user.id && Objects.equals(name, user.name);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(id, name);
         }
     }
 

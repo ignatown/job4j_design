@@ -3,26 +3,15 @@ package put;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LogFilter {
     public static List<String> filter(String file) {
-        StringBuilder data = new StringBuilder();
         List<String> list = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            in.lines().forEach(a -> data.append(a + "\n"));
+            list = in.lines().filter(x -> x.contains("404")).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        data.toString().split("\n");
-
-        for (String str:
-                data.toString().split("\n")) {
-            for (String pr:
-                    str.split(" ")) {
-                if (pr.equals("404")) {
-                    list.add(str);
-                }
-            }
         }
         return list;
     }
@@ -34,7 +23,7 @@ public class LogFilter {
                 ))) {
             for (String l:
                  log) {
-                out.write(l + "\n");
+                out.println(l);
             }
         } catch (Exception e) {
             e.printStackTrace();

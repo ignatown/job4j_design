@@ -15,9 +15,7 @@ public class Config {
 
     public void load() {
         try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
-            this.values = in.lines().filter(a -> !a.contains("//"))
-                    .filter(a -> !a.contains("//"))
-                    .filter(a -> !a.contains(System.lineSeparator()))
+            this.values = in.lines().filter(a -> !a.contains("#"))
                     .map(a -> a.split("="))
                     .collect(Collectors.toMap(a -> a[0], a -> a[1]));
 

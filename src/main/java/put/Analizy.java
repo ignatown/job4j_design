@@ -1,29 +1,33 @@
 package put;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Analizy {
 
     boolean check;
-    StringBuilder data = new StringBuilder();
+    List<String> log = new ArrayList<>();
+    int point = 0;
 
     public void unavailable(String source, String target) {
         try (BufferedReader in = new BufferedReader(new FileReader(source))) {
            in.lines().forEach(a -> {
                if ((a.startsWith("400") || a.startsWith("500")) && !check ) {
                    check = true;
-                   data.append(a.substring(4)).append(";");
+                   log.add(a.substring(4) + ";");
                }
                if ((a.startsWith("300") || a.startsWith("200")) && check ) {
                    check = false;
-                   data.append(a.substring(4)).append(";").append(System.lineSeparator());
+                   log.add(log.get(point) + a.substring(4) + ";");
+                   point++;
                }
            });
         } catch (Exception e) {
             e.printStackTrace();
         }
         try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)))) {
-            out.write(String.valueOf(data));
+            out.write(String.valueOf(log));
         } catch (Exception e) {
             e.printStackTrace();
         }

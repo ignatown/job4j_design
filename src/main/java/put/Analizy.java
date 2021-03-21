@@ -15,11 +15,11 @@ public class Analizy {
            in.lines().forEach(a -> {
                if ((a.startsWith("400") || a.startsWith("500")) && !check ) {
                    check = true;
-                   log.add(a.substring(4) + ";");
+                   log.add("server up: " + a.substring(4) + " ");
                }
                if ((a.startsWith("300") || a.startsWith("200")) && check ) {
                    check = false;
-                   log.add(log.get(point) + a.substring(4) + ";");
+                   log.add(" server down: " + a.substring(4) + " ");
                    point++;
                }
            });

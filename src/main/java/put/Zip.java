@@ -35,10 +35,13 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
+        }
         ArgsName argNames = ArgsName.of(args);
-        List<Path> paths = Search.search(Path.of(argNames.get("1")),
-                p -> p.toFile().getName().endsWith(argNames.get("2")));
-        Path out = Path.of(argNames.get("3"));
+        List<Path> paths = Search.search(Path.of(argNames.get("d")),
+                p -> p.toFile().getName().endsWith(argNames.get("e")));
+        Path out = Path.of(argNames.get("o"));
         new Zip().packFiles(paths, out);
     }
 }

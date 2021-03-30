@@ -26,15 +26,15 @@ public class EchoServer {
                     System.out.println("User: " + (getContent(str)));
                         switch (getContent(str)) {
                             case ("Hello"):
-                                out.write(("Hello too!\r\r\r\n").getBytes());
+                                out.write(("Hello too!\r\n").getBytes());
                                 break;
                             case ("Exit"):
-                                out.write("Bye!\r\r\r\n".getBytes());
+                                out.write("Bye!\r\n".getBytes());
                                 out.flush();
                                 socket.close();
                                 break;
                             default:
-                                out.write("What\r\n\r\n".getBytes());
+                                out.write("What\r\n".getBytes());
                                 break;
                         }
                 } catch (Exception e) {

@@ -3,14 +3,26 @@ package serialization;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+@XmlRootElement(name = "auto")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Auto {
-    private final boolean automaticTransmission;
-    private final int horsepower;
-    private final String model;
-    private final Manufacturer manufacturer;
-    private final String[] colors;
+    @XmlAttribute
+    private boolean automaticTransmission;
+    @XmlAttribute
+    private int horsepower;
+    @XmlAttribute
+    private String model;
+    private Manufacturer manufacturer;
+    private String[] colors;
+
+    public Auto() {
+    }
 
     public Auto(boolean automaticTransmission, int horsepower, String model, Manufacturer manufacturer, String[] colors) {
         this.automaticTransmission = automaticTransmission;

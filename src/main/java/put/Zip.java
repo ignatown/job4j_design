@@ -35,7 +35,7 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
+        if (args.length < 3) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
         }
         ArgsName argNames = ArgsName.of(args);

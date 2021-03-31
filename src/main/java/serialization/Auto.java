@@ -1,5 +1,6 @@
 package serialization;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -59,7 +60,7 @@ public class Auto {
         jsonObject.put("horsepower", auto.getHorsepower());
         jsonObject.put("model", auto.getModel());
         jsonObject.put("manufacturer", auto.getManufacturer());
-        jsonObject.put("colors", auto.getColors());
+        jsonObject.put("colors", new JSONArray(auto.getColors()));
 
         System.out.println(jsonObject.toString());
 

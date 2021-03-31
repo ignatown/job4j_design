@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<auto automaticTransmission="false" horsepower="102" model="Accent">
+    <manufacturer name="Hyundai" country="Korea"/>
+    <colors>
+        <status>Black</status>
+        <status>White</status>
+        <status>Cherry</status>
+    </colors>
+</auto>

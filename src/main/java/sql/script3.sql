@@ -1,0 +1,1 @@
+update cars set name = 'ВАЗ', automaticTransmission = false, numberOfWheels = 4;

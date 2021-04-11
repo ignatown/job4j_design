@@ -1,0 +1,1 @@
+insert into cars(name, numberOfWheels, automaticTransmission) values('BMW', 4, true);

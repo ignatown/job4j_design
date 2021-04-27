@@ -1,6 +1,5 @@
 package put;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,9 +23,7 @@ public class ArgsName {
                     throw new IllegalArgumentException();
                 }
                 values.put(temp[0], temp[1]);
-            } else {
-                throw new IllegalArgumentException();
-            }
+            } else throw new IllegalArgumentException();
         }
     }
 

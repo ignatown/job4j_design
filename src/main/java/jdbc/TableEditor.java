@@ -25,47 +25,27 @@ public class TableEditor implements AutoCloseable {
 
     public void createTable(String tableName) {
         String query = "create table " + tableName + " (id serial primary key, name varchar(255);";
-        try(Statement stat = connection.createStatement()) {
-            stat.execute(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        executing(query);
     }
 
     public void dropTable(String tableName) {
         String query = "drop table " + tableName;
-        try(Statement stat = connection.createStatement()) {
-            stat.execute(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        executing(query);
     }
 
     public void addColumn(String tableName, String columnName, String type) {
         String query = "alter table " + tableName + " add column " + columnName + " "  + type;
-        try(Statement stat = connection.createStatement()) {
-            stat.execute(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        executing(query);
     }
 
     public void dropColumn(String tableName, String columnName) {
         String query = "alter table " + tableName + " drop column " + columnName ;
-        try(Statement stat = connection.createStatement()) {
-            stat.execute(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        executing(query);
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) {
         String query = "alter table " + tableName + " rename column " + columnName + " to "  + newColumnName;
-        try(Statement stat = connection.createStatement()) {
-            stat.execute(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        executing(query);
     }
 
     public String getScheme(String tableName) throws SQLException {
@@ -80,6 +60,14 @@ public class TableEditor implements AutoCloseable {
             }
         }
         return scheme.toString();
+    }
+
+    public void executing(String query) {
+        try(Statement stat = connection.createStatement()) {
+            stat.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

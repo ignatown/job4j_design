@@ -11,8 +11,9 @@ import java.util.Properties;
 public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
         Properties prs = new Properties();
-        FileInputStream fis = new FileInputStream("app.properties");
+       try ( FileInputStream fis = new FileInputStream("app.properties") ) {
         prs.load(fis);
+       }
         Class.forName("org.postgresql.Driver");
         String url = prs.getProperty("url");
         String login = prs.getProperty("login");

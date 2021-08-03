@@ -15,7 +15,7 @@ public class HRReport implements Report{
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
-        text.append("Name; Hired; Fired; Salary");
+        text.append("Name; Salary;").append(System.lineSeparator());
         Comparator comparatorBySalaryDESC = new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {

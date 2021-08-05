@@ -2,12 +2,20 @@ package ood.solid.srp.reports;
 
 import java.util.Calendar;
 import java.util.Objects;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name = "Emp")
 public class Employee {
+    @XmlAttribute
     private String name;
+    @XmlAttribute
     private Calendar hired;
+    @XmlAttribute
     private Calendar fired;
+    @XmlAttribute
     private double salary;
+
+    private Employee() {}
 
     public Employee(String name, Calendar hired, Calendar fired, double salary) {
         this.name = name;

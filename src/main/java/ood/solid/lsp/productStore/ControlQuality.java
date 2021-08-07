@@ -6,45 +6,31 @@ import ood.solid.lsp.productStore.storages.Storage;
 import ood.solid.lsp.productStore.storages.Trash;
 import ood.solid.lsp.productStore.storages.Warehouse;
 
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ControlQuality {
-    public static Map<String, Storage> storageMap;
+    private static List<Storage> storageList;
     static {
-        storageMap = new HashMap<>();
-        storageMap.put("Shop", new Shop());
-        storageMap.put("Warehouse", new Warehouse());
-        storageMap.put("Trash", new Trash());
+        storageList = new ArrayList<>();
+        storageList.add(new Shop());
+        storageList.add(new Warehouse());
+        storageList.add(new Trash());
     }
 
-    public ControlQuality( Map<String, Storage> storageMap) {
-        this.storageMap = storageMap;
+    public ControlQuality( List<Storage> storageList) {
+        ControlQuality.storageList = storageList;
     }
 
-    public Map<String, Storage> getStorages() {
-        return storageMap;
-    }
-
-    private Storage storageSelection(Food food) {
-        Storage rsl;
-        double shelfLife = (food.getExpiredDate().getTimeInMillis() - food.getCreateDate().getTimeInMillis())
-                / food.getExpiredDate().getTimeInMillis() - new GregorianCalendar().getTimeInMillis();
-        if (shelfLife > 0 && shelfLife < 0.75) {
-            if (shelfLife < 0.25) {
-                food.setDiscount(food.getDiscount() + 0.5);
-            }
-            rsl = getStorages().get("Shop");
-        } else if (shelfLife > 0.75) {
-            rsl = getStorages().get("Warehouse");
-        } else {
-            rsl = getStorages().get("Trash");
-        }
-        return rsl;
+    public List<Storage> getStorages() {
+        List<Storage> storages = storageList;
+        return storages;
     }
 
     private void process(Food food) {
-        storageSelection(food).add(food);
+        for (Storage storage: getStorages()) {
+            if (storage.accept(food)) {
+                storage.add(food);
+            }
+        }
     }
 }

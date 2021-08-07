@@ -1,5 +1,6 @@
 package ood.solid.lsp.productStore.storages;
 
+import ood.solid.lsp.productStore.ExpirationControl;
 import ood.solid.lsp.productStore.foods.Food;
 
 import java.util.ArrayList;
@@ -16,6 +17,13 @@ public class Trash implements Storage{
 
     @Override
     public List<Food> get() {
-        return trashStorage;
+        List<Food> list = trashStorage;
+        return list;
     }
+
+    @Override
+    public boolean accept(Food food) {
+        return new ExpirationControl().getPercent(food) < 0;
+    }
+
 }

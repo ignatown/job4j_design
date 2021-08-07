@@ -7,4 +7,5 @@ import java.util.List;
 public interface Storage {
     public void add(Food food);
     public List<Food> get();
+    boolean accept(Food food);
 }

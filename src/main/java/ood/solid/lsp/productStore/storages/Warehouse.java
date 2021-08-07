@@ -1,5 +1,6 @@
 package ood.solid.lsp.productStore.storages;
 
+import ood.solid.lsp.productStore.ExpirationControl;
 import ood.solid.lsp.productStore.foods.Food;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class Warehouse implements Storage{
 
-    private List<Food> warehouseStorage = new ArrayList<>();
+    private final List<Food> warehouseStorage = new ArrayList<>();
 
     @Override
     public void add(Food food) {
@@ -16,6 +17,12 @@ public class Warehouse implements Storage{
 
     @Override
     public List<Food> get() {
-        return warehouseStorage;
+        List<Food> list = warehouseStorage;
+        return list;
+    }
+
+    @Override
+    public boolean accept(Food food) {
+        return new ExpirationControl().getPercent(food) > 0.75;
     }
 }

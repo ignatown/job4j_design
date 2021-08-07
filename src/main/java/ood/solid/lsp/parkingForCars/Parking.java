@@ -1,5 +1,5 @@
 package ood.solid.lsp.parkingForCars;
 
-public interface Parcking {
+public interface Parking {
     boolean parkTheCar(Car car);
 }

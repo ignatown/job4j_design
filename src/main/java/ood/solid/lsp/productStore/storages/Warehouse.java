@@ -25,4 +25,9 @@ public class Warehouse implements Storage{
     public boolean accept(Food food) {
         return new ExpirationControl().getPercent(food) > 0.75;
     }
+
+    @Override
+    public void clear() {
+        warehouseStorage.clear();
+    }
 }

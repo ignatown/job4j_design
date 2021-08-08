@@ -27,10 +27,21 @@ public class ControlQuality {
     }
 
     private void process(Food food) {
-        for (Storage storage: getStorages()) {
+        for (Storage storage: storageList) {
             if (storage.accept(food)) {
                 storage.add(food);
             }
+        }
+    }
+
+    public void resort(){
+        List<Food> resortFoodList = new ArrayList<>();
+        for (Storage storage : storageList) {
+            resortFoodList.addAll(storage.get());
+            storage.clear();
+        }
+        for (Food food : resortFoodList) {
+          process(food);
         }
     }
 }

@@ -26,4 +26,9 @@ public class Trash implements Storage{
         return new ExpirationControl().getPercent(food) < 0;
     }
 
+    @Override
+    public void clear() {
+        trashStorage.clear();
+    }
+
 }

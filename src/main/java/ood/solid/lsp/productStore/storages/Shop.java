@@ -31,4 +31,9 @@ public class Shop implements Storage{
            return true;
     } return false;
     }
+
+    @Override
+    public void clear() {
+        shopStorage.clear();
+    }
 }

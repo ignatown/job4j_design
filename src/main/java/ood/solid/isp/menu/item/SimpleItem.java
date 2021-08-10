@@ -28,11 +28,13 @@ public class SimpleItem implements Item{
     }
 
     @Override
-    public void printItem() {
+    public String toString() {
+        StringBuilder rsl = new StringBuilder();
         for (int i = 1;i < deep; i++ ) {
-            System.out.print("...");
+            rsl.append("...");
         }
-        System.out.println(name + "   [" + action.getActionName()+"]");
+        rsl.append(name + "   [" + action.getActionName()+"]");
+        return rsl.toString();
     }
 
     @Override

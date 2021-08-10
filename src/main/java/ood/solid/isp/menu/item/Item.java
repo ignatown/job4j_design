@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface Item {
     void setDeep(int level);
-    void printItem();
     String getName();
     Action getAction();
     List<Item> getAllItem();

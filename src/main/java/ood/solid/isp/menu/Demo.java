@@ -22,7 +22,7 @@ public class Demo {
                         new SimpleItem("Report", fileAction)));
         SimpleItem root = new SimpleItem("ROOT", folderAction, List.of(folder1, folder2));
         for (Item item : root.getAllItem()) {
-            item.printItem();
+            System.out.println(item.toString());
         }
 
         itemSearcher.searchByName("Work", root).getAction().act();
